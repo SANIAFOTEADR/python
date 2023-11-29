@@ -1,40 +1,44 @@
-#Create a database using lists and tuples.
-# Define the database as a list of tuples
-employee_database = [
-    (1, "John Doe", 50000),
-    (2, "Jane Smith", 60000),
-    (3, "Bob Johnson", 55000),
-    # Add more entries as needed
-]
+#Write a program to create a list of student’s records and search a student record using a dictionary.
+student_records = []
 
-# Function to display all entries in the database
-def display_database(database):
-    for entry in database:
-        print(f"Employee ID: {entry[0]}, Name: {entry[1]}, Salary: {entry[2]}")
+# Function to add a student record to the list
+def add_student_record():
+    name = input("Enter student's name: ")
+    roll_number = input("Enter roll number: ")
+    marks = input("Enter marks: ")
+    student_record = {'Name': name, 'Roll Number': roll_number, 'Marks': marks}
+    student_records.append(student_record)
+    print(f"Student record for {name} has been added.")
 
-# Function to add a new entry to the database
-def add_entry(database, employee_id, name, salary):
-    new_entry = (employee_id, name, salary)
-    database.append(new_entry)
-    print("Entry added successfully.")
+# Function to search for a student record by name
+def search_student_record():
+    search_name = input("Enter the name of the student you want to search for: ")
+    found = False
+    for record in student_records:
+        if record['Name'] == search_name:
+            print("Student Record Found:")
+            print("Name:", record['Name'])
+            print("Roll Number:", record['Roll Number'])
+            print("Marks:", record['Marks'])
+            found = True
+            break
+    if not found:
+        print(f"No record found for {search_name}.")
 
-# Function to search for an entry by employee ID
-def search_by_id(database, employee_id):
-    for entry in database:
-        if entry[0] == employee_id:
-            return entry
-    return None
+# Main program loop
+while True:
+    print("\nOptions:")
+    print("1. Add Student Record")
+    print("2. Search Student Record")
+    print("3. Exit")
+    choice = input("Enter your choice: ")
 
-# Example usage:
-display_database(employee_database)
-
-print("\nAdding a new entry:")
-add_entry(employee_database, 4, "Alice Johnson", 70000)
-display_database(employee_database)
-
-print("\nSearching for employee with ID 2:")
-result = search_by_id(employee_database, 2)
-if result:
-    print(f"Employee found - Employee ID: {result[0]}, Name: {result[1]}, Salary: {result[2]}")
-else:
-    print("Employee not found.")
+    if choice == '1':
+        add_student_record()
+    elif choice == '2':
+        search_student_record()
+    elif choice == '3':
+        print("Exiting the program.")
+        break
+    else:
+        print("Invalid choice. Please enter 1, 2, or 3.")
